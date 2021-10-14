@@ -1,25 +1,23 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { TheBestDrinkProvider } from './context/theBestDrinkContext';
+// import HomePage from './pages/homePage';
+import DrikDetails from './pages/drikDetails/index';
+import NotFound from './pages/notFound';
+import RenderPage from './pages/renderPage/index';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <TheBestDrinkProvider>
+        <Switch>
+          <Route path="/" exact component={RenderPage} />
+          <Route path="/details/:id" exact component={DrikDetails} />
+          <Route path="*" exact component={NotFound} />
+        </Switch>
+      </TheBestDrinkProvider>
+    </BrowserRouter>
   );
 }
 
